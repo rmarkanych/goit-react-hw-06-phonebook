@@ -13,6 +13,7 @@ const ContactList = () => {
   );
 
   const handleDelete = id => dispatch(deleteContact(id));
+
   return (
     <div className={s.wrapper}>
       {filteredArray.length < 1 ? (

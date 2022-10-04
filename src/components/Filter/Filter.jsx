@@ -1,6 +1,6 @@
 import Title from 'components/Title/Title';
 import { useDispatch } from 'react-redux';
-import { setStatusFilter } from 'redux/filterSlice';
+import { setFilter } from 'redux/filterSlice';
 
 const Filter = () => {
   const dispatch = useDispatch();
@@ -11,7 +11,7 @@ const Filter = () => {
       <label>
         <input
           type="text"
-          onChange={e => dispatch(setStatusFilter(e.target.value))}
+          onChange={e => dispatch(setFilter(e.target.value))}
         />
       </label>
     </>
