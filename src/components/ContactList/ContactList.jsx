@@ -1,20 +1,31 @@
 import Title from 'components/Title/Title';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteContact } from 'redux/contactsSlice';
 import s from '../ContactList/ContactList.module.css';
-import PropTypes from 'prop-types';
-const ContactList = ({ contactsList, removeContact }) => {
+
+const ContactList = () => {
+  const contacts = useSelector(state => state.contacts);
+  const filter = useSelector(state => state.filter);
+  const dispatch = useDispatch();
+
+  const filteredArray = contacts.filter(el =>
+    el.name.toLowerCase().includes(filter.toLowerCase())
+  );
+
+  const handleDelete = id => dispatch(deleteContact(id));
   return (
     <div className={s.wrapper}>
-      {contactsList().length < 1 ? (
+      {filteredArray.length < 1 ? (
         <Title title="Add new contact to your list ⬆" />
       ) : (
         <ul className={s.list}>
-          {contactsList().map(({ id, name, number }) => {
+          {filteredArray.map(({ id, name, number }) => {
             return (
               <li className={s.item} key={id}>
                 <p>
                   {name}: {number}
                 </p>
-                <button className={s.btn} onClick={() => removeContact(id)}>
+                <button className={s.btn} onClick={() => handleDelete(id)}>
                   Delete 🗑
                 </button>
               </li>
@@ -25,8 +36,5 @@ const ContactList = ({ contactsList, removeContact }) => {
     </div>
   );
 };
-ContactList.propTypes = {
-  contactsList: PropTypes.func,
-  removeContact: PropTypes.func,
-};
+
 export default ContactList;
