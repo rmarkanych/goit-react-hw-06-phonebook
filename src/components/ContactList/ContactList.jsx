@@ -1,6 +1,6 @@
-import Title from 'components/Title/Title';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact } from 'redux/contactsSlice';
+import Title from 'components/Title/Title';
 import s from '../ContactList/ContactList.module.css';
 
 const ContactList = () => {

@@ -1,6 +1,6 @@
-import Title from 'components/Title/Title';
 import { useDispatch } from 'react-redux';
 import { setFilter } from 'redux/filterSlice';
+import Title from 'components/Title/Title';
 
 const Filter = () => {
   const dispatch = useDispatch();
